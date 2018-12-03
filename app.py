@@ -40,7 +40,7 @@ class AppResource():
                     # Slackへ送信するattachmentsを作成
                     attachments = self.create_attachments(rss, last_items, key)
                     # スレッドタイトルを送信
-                    res = slackclient.send([{'title': '新着通知：{}'.format(rss.entries.title)}])
+                    res = slackclient.send([{'title': '新着通知：{}'.format(key.decode())}])
                     # スレッドのタイトルに紐付けて新着記事を送信
                     slackclient.send(attachments, thread_ts=res.json()['ts'])
             else:
