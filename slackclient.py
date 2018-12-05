@@ -14,12 +14,11 @@ class SlackClient():
             'Content-Type' : 'application/json; charset=utf-8',
             'Authorization' : 'Bearer {}'.format(self.token)
         }
-        # Slack送信用データを作成
-        self.data = {'channel': self.channel}
 
     def send(self, attachments, thread_ts=None):
         """Slackへ送信を行う"""
-        self.data['attachments'] = attachments
+        # Slack送信用データを作成
+        data = {'channel': self.channel, 'attachments': attachments}
         if thread_ts is not None:
-            self.data['thread_ts'] = thread_ts
+            data['thread_ts'] = thread_ts
         return requests.post(self.web_hook_url, data = json.dumps(self.data), headers = self.headers)
