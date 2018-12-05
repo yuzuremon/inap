@@ -71,7 +71,7 @@ class AppResource():
             if re.match(r'^https?:\/\/', url):
                 rss = feedparser.parse(url)
                 # パースが成功している場合のみ処理を行う
-                if rss.bozo == 0:
+                if rss.bozo == 0 or rss.entries != []:
                     title = rss.feed.title
                     self.redis.add(title, url, self.time_format(rss.entries[1].published))
                     msg = 'RSS登録完了: {}'.format(title)
