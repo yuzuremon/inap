@@ -25,7 +25,7 @@ class AppResource():
             rss = feedparser.parse(url)
 
             # パースが成功している場合のみ処理を行う
-            if rss.bozo == 0:
+            if rss.bozo == 0 or rss.entries != []:
                 # 最後に取得した記事の作成日時より新しい記事のみ取得
                 last_items = -1
                 previous_time = self.time_format(rss_config_dict[b'previous_time'].decode())
