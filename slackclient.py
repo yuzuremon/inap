@@ -21,4 +21,4 @@ class SlackClient():
         data = {'channel': self.channel, 'attachments': attachments}
         if thread_ts is not None:
             data['thread_ts'] = thread_ts
-        return requests.post(self.web_hook_url, data = json.dumps(self.data), headers = self.headers)
+        return requests.post(self.web_hook_url, data = json.dumps(data), headers = self.headers)
